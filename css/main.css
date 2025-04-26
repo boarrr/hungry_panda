@@ -296,6 +296,10 @@ footer {
     margin-right: 5px;
 }
 
+.qty-number {
+    font-size: 1.25rem;
+}
+
 .quantity-btn button {
     height: 20px;
     width: 20px;

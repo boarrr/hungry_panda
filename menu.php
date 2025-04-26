@@ -28,7 +28,7 @@ if ($result && $result->num_rows > 0) {
 <div class="menu screen-divide container-x">
     <div class="navbar">
         <div class="logo">
-            <a href="index.html">
+            <a href="./">
                 <div class="img">
                     <img class="logo-img" src="assets/hungry-panda-logo.png" alt="Logo">
                 </div>
@@ -36,7 +36,7 @@ if ($result && $result->num_rows > 0) {
             </a>
         </div>
         <div class="navbar-items">
-            <a href="index.html"><button class="navbar-button">Home</button></a>
+            <a href="./"><button class="navbar-button">Home</button></a>
             <a href="menu.php"><button class="navbar-button">Menu</button></a>
             <a href="contact-us.php"><button class="navbar-button">Contact Us</button></a>
 
@@ -101,7 +101,7 @@ if ($result && $result->num_rows > 0) {
                     <h3>€<?php echo number_format($item['price'], 2); ?></h3>
 
                     <div class="quantity-btn screen-divide">
-                        <div><h5>QTY: <span id="qty-<?php echo $item['item_id']; ?>"><?php echo isset($_SESSION['cart'][$item['item_id']]) ? $_SESSION['cart'][$item['item_id']] : 0; ?></span></h5></div>
+                        <div><h5>QTY: <span class="qty-number" id="qty-<?php echo $item['item_id']; ?>"><?php echo isset($_SESSION['cart'][$item['item_id']]) ? $_SESSION['cart'][$item['item_id']] : 0; ?></span></h5></div>
                         <button type="button" class="button add-btn" data-id="<?php echo $item['item_id']; ?>">+</button>
                         <button type="button" class="button remove-btn" data-id="<?php echo $item['item_id']; ?>">-</button>
                     </div>

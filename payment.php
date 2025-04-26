@@ -20,7 +20,7 @@ if (!isset($_SESSION['user_id'])) {
 <div class="screen-divide container-x">
   <div class="navbar">
     <div class="logo">
-      <a href="index.html">
+      <a href="./">
         <div class="img">
           <img class="logo-img" src="assets/hungry-panda-logo.png" alt="Logo">
         </div>
@@ -29,7 +29,7 @@ if (!isset($_SESSION['user_id'])) {
     </div>
 
     <div class="navbar-items">
-      <a href="index.html"><button class="navbar-button">Home</button></a>
+      <a href="./"><button class="navbar-button">Home</button></a>
       <a href="menu.php"><button class="navbar-button">Menu</button></a>
       <a href="contact-us.php"><button class="navbar-button">Contact Us</button></a>
 
