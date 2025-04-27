@@ -9,10 +9,11 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
 
     <title>Hungry Panda</title>
 </head>
+
 <body>
     <div class="account container-x">
         <div class="main-nav">
@@ -21,12 +22,12 @@
                     <div class="img">
                         <img class="logo-img" src="assets/hungry-panda-logo.png" alt="Logo">
                     </div>                  
-                    <h3>
-                        Hungry Panda
-                    </h3>
+                    <h3>Hungry Panda</h3>
                 </a>
             </div>
             <a href="menu.php"><button class="button right-tp-corner">Order Now</button></a>
+        </div>
+
         <div class="screen-divide-col">
             <div class="account-content">
                 <div id="login-box" class="login-box">
@@ -36,13 +37,12 @@
                     </p>
 
                     <form id="login-form" action="php/login.php" method="POST">
-                        <input type="text" name="phone_number" placeholder="Phone Number" required />
+                        <input type="tel" name="phone_number" placeholder="Phone Number" pattern="[0-9]{8,15}" title="Enter a valid phone number" required />
                         <input type="password" name="password" placeholder="Password" required />
                         <button type="submit" class="button login-btn">Confirm</button>
                     </form>
-                    
                 </div>
-            
+                
                 <div id="register-box" class="login-box" style="display: none;">
                     <h2>Register</h2>
                     <p class="switch-form">
@@ -50,17 +50,18 @@
                     </p>
 
                     <form id="register-form" action="php/register.php" method="POST">
-                        <input type="text" name="phone_number" placeholder="Phone Number" required />
+                        <input type="tel" name="phone_number" placeholder="Phone Number" pattern="[0-9]{8,15}" title="Enter a valid phone number" required />
                         <input type="password" name="password" id="password" placeholder="Password" required />
                         <input type="password" name="confirm_password" id="confirm-password" placeholder="Confirm Password" required />
-                        
                         <button type="submit" class="button login-btn">Register</button>
                     </form>
-                    
                 </div>
-            </div>                   
+            </div>
         </div>
     </div>
-    <footer><h6>Ryan Pitman (C23741429) | Hungry Panda</h6></footer>
+
+    <footer>
+        <h6>Ryan Pitman (C23741429) | Hungry Panda</h6>
+    </footer>
 </body>
 </html>

@@ -41,11 +41,13 @@ if ($result && $result->num_rows > 0) {
             <a href="contact-us.php"><button class="navbar-button">Contact Us</button></a>
 
             <?php if (isset($_SESSION['user_id'])): ?>
+                <a href="account.php"><button class="navbar-button">Account</button></a>
                 <a href="php/logout.php"><button class="navbar-button">Logout</button></a>
             <?php else: ?>
                 <a href="login-register.html"><button class="navbar-button">Login</button></a>
             <?php endif; ?>
         </div>
+
     </div>
 
     <div class="bg-content menu-content">

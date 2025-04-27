@@ -456,7 +456,7 @@ footer {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    background-color: black;
+    background-color: rgb(255, 0, 0);
     color: white;
     padding: 1rem 2rem;
     border-radius: 8px;

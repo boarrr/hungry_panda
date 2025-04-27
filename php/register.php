@@ -1,38 +1,43 @@
 <?php
 session_start();
-include 'db_connect.php'; // Connect to the database
+include 'db_connect.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form input values
-    $phone_number = $_POST['phone_number'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $phone_number = trim($_POST['phone_number']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
-    // Check if passwords match
     if ($password !== $confirm_password) {
-        echo "<script>alert('Passwords do not match!'); window.history.back();</script>";
+        header("Location: ../login-register.html?error=password_mismatch");
         exit();
     }
 
-    // Hash the password
+    // Check if phone number already exists
+    $stmt = $conn->prepare("SELECT user_id FROM users WHERE phone_number = ?");
+    $stmt->bind_param("s", $phone_number);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        header("Location: ../login-register.html?error=phone_taken");
+        exit();
+    }
+
+    // Hash password
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-    // Insert new user into the database
-    $sql = "INSERT INTO users (username, password, email, phone_number) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
+    // Insert into database
+    $stmt = $conn->prepare("INSERT INTO users (phone_number, password) VALUES (?, ?)");
+    $stmt->bind_param("ss", $phone_number, $hashed_password);
 
-    // For now, use the phone number as username and a dummy email
-    $dummy_email = $phone_number . "@example.com"; // TODO: Improve this later
-
-    if ($stmt) {
-        $stmt->bind_param("ssss", $phone_number, $hashed_password, $dummy_email, $phone_number);
-        if ($stmt->execute()) {
-            echo "<script>alert('Registration successful! You can now log in.'); window.location.href='../login-register.html';</script>";
-        } else {
-            echo "<script>alert('Registration failed: " . $stmt->error . "'); window.history.back();</script>";
-        }
+    if ($stmt->execute()) {
+        $_SESSION['user_id'] = $stmt->insert_id;
+        $_SESSION['phone_number'] = $phone_number;
+        header("Location: ../menu.php");
+        exit();
     } else {
-        echo "<script>alert('Something went wrong!'); window.history.back();</script>";
+        header("Location: ../login-register.html?error=register_failed");
+        exit();
     }
 }
 ?>
